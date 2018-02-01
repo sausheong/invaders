@@ -448,7 +448,7 @@ func printImage(img image.Image) {
 }
 ```
 
-And that's it! All in all, including comments, the code is around 250 lines. If it seems too short, you should remember the original entire compiled binary ROM for the game is less than 110kb in size, including images and music! And mine is a simpler clone without the full game features (dropping torpedoes, defender bunkers, ufo etc).
+And that's it! All in all, including comments, the code is less than 300 lines. If it seems pretty short, you should remember the original entire compiled binary ROM for the game is less than 110kb in size, including images and music! And mine is a simpler clone without the full game features (multiple lives, defender bunkers, ufo etc) and also includes 2 external libraries.
 
 This is how it looks on my computer. How does it look on yours?
 
