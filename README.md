@@ -10,7 +10,7 @@ Of course that didn't stop me from trying my hand at it once again. This time ro
 
 ## Space Invaders
 
-[Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders) is one of the most successful arcade video games in the [golden age](https://en.wikipedia.org/wiki/Golden_age_of_arcade_video_games). It was first released in 1978 and is generally accepted as start of the golden age, which lasted from late 70s to the early 90s. Even after the decline of arcade video games, it simply transcended to up and coming video game consoles.
+[Space Invaders](https://en.wikipedia.org/wiki/Space_Invaders) was one of the most successful arcade video games during the [golden age of arcade video games](https://en.wikipedia.org/wiki/Golden_age_of_arcade_video_games). It was first released in 1978 and is generally accepted as start of the golden age, which lasted from late 70s to the early 90s. Even after the decline of arcade video games, it simply transcended the medium and moved to video game consoles.
 
 ![Space Invaders](images/space-invaders.png)
 
@@ -369,7 +369,7 @@ if aliens[0].Position.X < alienSize || aliens[aliensPerRow-1].Position.X > windo
 }
 ```
 
-We also need to move the bombs downwards on its deadly descend, according to the `boobSpeed`.
+We also need to move the bombs downwards on its deadly descend, according to the `bombSpeed`.
 
 ```go
 // draw bombs, if laser cannon is hit, game over
