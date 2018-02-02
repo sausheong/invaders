@@ -12,6 +12,7 @@ import (
 
 	"github.com/disintegration/gift"
 	termbox "github.com/nsf/termbox-go"
+	"path/filepath"
 )
 
 // parameters
@@ -282,7 +283,17 @@ func printImage(img image.Image) {
 }
 
 func getImage(filePath string) image.Image {
-	imgFile, err := os.Open(filePath)
+	execPath, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+
+	absolutePath, err := filepath.Abs(filepath.Dir(execPath) + "/" + filePath)
+
+	if err != nil {
+		panic(err)
+	}
+	imgFile, err := os.Open(absolutePath)
 	defer imgFile.Close()
 	if err != nil {
 		fmt.Println("Cannot read file:", err)
