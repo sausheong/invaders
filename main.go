@@ -277,10 +277,11 @@ func collide(s1, s2 Sprite) bool {
 func printImage(img image.Image) {
 	var buf bytes.Buffer
 	png.Encode(&buf, img)
-	ansiImg, err := ansimage.NewScaledFromReader(&buf, 124, 424, color.Black, ansimage.ScaleModeFit, ansimage.NoDithering)
+	ansiImg, err := ansimage.NewScaledFromReader(&buf, 120, 180, color.Black, ansimage.ScaleModeFit, ansimage.NoDithering)
 	if err != nil {
 		panic(err)
 	}
+	print("\033[H")
 	ansiImg.Draw()
 }
 
