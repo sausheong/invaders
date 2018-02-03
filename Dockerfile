@@ -8,6 +8,7 @@ RUN cd / && \
 FROM scratch
 LABEL maintainer "Sau Sheong Chang <sausheong@gmail.com>"
 
+WORKDIR /
 CMD ["/invaders"]
 COPY imgs /imgs
 COPY --from=build /invaders /
