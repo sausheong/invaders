@@ -2,12 +2,14 @@ package main
 
 import (
 	"bytes"
+	"encoding/base64"
 	"fmt"
 	"image"
 	"image/color"
 	"image/png"
 	"math/rand"
 	"os"
+	"runtime"
 	"time"
 
 	"github.com/disintegration/gift"
@@ -22,6 +24,9 @@ var aliensStartCol = 100
 var alienSize = 30
 var bombProbability = 0.005
 var bombSpeed = 10
+
+//macOS check
+var isMac = runtime.GOOS == "darwin"
 
 // sprites
 var src = getImage("imgs/sprites.png")
@@ -277,12 +282,18 @@ func collide(s1, s2 Sprite) bool {
 func printImage(img image.Image) {
 	var buf bytes.Buffer
 	png.Encode(&buf, img)
-	ansiImg, err := ansimage.NewScaledFromReader(&buf, 120, 180, color.Black, ansimage.ScaleModeFit, ansimage.NoDithering)
-	if err != nil {
-		panic(err)
+
+	if isMac {
+		imgBase64Str := base64.StdEncoding.EncodeToString(buf.Bytes())
+		fmt.Printf("\x1b[2;0H\x1b]1337;File=inline=1:%s\a", imgBase64Str)
+	} else {
+		ansiImg, err := ansimage.NewScaledFromReader(&buf, 120, 180, color.Black, ansimage.ScaleModeFit, ansimage.NoDithering)
+		if err != nil {
+			panic(err)
+		}
+		print("\033[H")
+		ansiImg.Draw()
 	}
-	print("\033[H")
-	ansiImg.Draw()
 }
 
 func getImage(filePath string) image.Image {
