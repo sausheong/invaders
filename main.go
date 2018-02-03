@@ -2,15 +2,16 @@ package main
 
 import (
 	"bytes"
-	"encoding/base64"
 	"fmt"
 	"image"
+	"image/color"
 	"image/png"
 	"math/rand"
 	"os"
 	"time"
 
 	"github.com/disintegration/gift"
+	"github.com/eliukblau/pixterm/ansimage"
 	termbox "github.com/nsf/termbox-go"
 )
 
@@ -273,12 +274,14 @@ func collide(s1, s2 Sprite) bool {
 	return false
 }
 
-// this only works for iTerm2!
 func printImage(img image.Image) {
 	var buf bytes.Buffer
 	png.Encode(&buf, img)
-	imgBase64Str := base64.StdEncoding.EncodeToString(buf.Bytes())
-	fmt.Printf("\x1b[2;0H\x1b]1337;File=inline=1:%s\a", imgBase64Str)
+	ansiImg, err := ansimage.NewScaledFromReader(&buf, 124, 424, color.Black, ansimage.ScaleModeFit, ansimage.NoDithering)
+	if err != nil {
+		panic(err)
+	}
+	ansiImg.Draw()
 }
 
 func getImage(filePath string) image.Image {
