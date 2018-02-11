@@ -460,3 +460,9 @@ The code for this is all here in this GitHub repository.
 
 https://github.com/sausheong/invaders
 
+# Install
+
+    git clone https://github.com/sausheong/invaders.git
+    cd invaders
+    make build
+    go run main.go
